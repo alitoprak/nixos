@@ -30,22 +30,32 @@
     boot.loader.efi.canTouchEfiVariables = true;
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
+    security.rtkit.enable = true;
+ 
     networking.hostName = hostname;
     networking.networkmanager.enable = true;
 
-    systemd.tmpfiles.rules = [
-      "d /etc/nixos 2775 root wheel - -"
-    ];
-
-    system.activationScripts.etcNixosPermissions.text = ''
-      if [ -d /etc/nixos ]; then
-        chown -R root:wheel /etc/nixos
-        chmod -R u+rwX,g+rwX,o+rX /etc/nixos
-        find /etc/nixos -type d -exec chmod 2775 {} +
-      fi
-    '';
-
     services.sshd.enable = true;
+
+    services = {
+      pipewire = {
+        enable = true;
+
+        alsa.enable = true;
+        alsa.support32Bit = true;
+  
+        pulse.enable = true;
+      };
+  
+      desktopManager.plasma6.enable = true;
+  
+      displayManager.plasma-login-manager.enable = true;
+    };
+
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     users.users = lib.mapAttrs mkSystemUser users;
 

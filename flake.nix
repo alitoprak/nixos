@@ -13,7 +13,7 @@
       
       users = {
         alitoprak = {
-          description = "My personal user.";
+          description = "Ali Toprak Kaynak";
           extraGroups = [ "wheel" "networkmanager" ];
         };
       };

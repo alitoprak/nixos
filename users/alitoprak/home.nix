@@ -5,8 +5,6 @@
     ];
   */
 
-  programs.home-manager.enable = true;
-
   programs.git = {
     enable = true;
         
@@ -19,4 +17,6 @@
       safe.directory = "/etc/nixos";
     };
   };
+
+  programs.firefox.enable = true;
 }
