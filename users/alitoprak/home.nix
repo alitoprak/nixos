@@ -32,6 +32,7 @@
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
         mkhl.direnv
+        ziglang.vscode-zig
         ms-vscode.hexeditor
       ];
 
