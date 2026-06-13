@@ -35,6 +35,8 @@
     networking.hostName = hostname;
     networking.networkmanager.enable = true;
 
+    nixpkgs.config.allowUnfree = true;
+
     services.sshd.enable = true;
 
     services = {

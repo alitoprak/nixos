@@ -19,4 +19,27 @@
   };
 
   programs.firefox.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.vscode = {
+    enable = true;
+
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        jnoortheen.nix-ide
+        mkhl.direnv
+        ms-vscode.hexeditor
+      ];
+
+      userSettings = {
+        "chat.disableAIFeatures" = true;
+        "security.workspace.trust.enabled" = false;
+        "zig.zls.enabled" = "on";
+      };
+    };
+  };
 }
